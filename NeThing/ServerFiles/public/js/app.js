@@ -13,6 +13,17 @@ $(function() {
                             console.log(this.o);
                         }*/
                     });
+    $("#gain").bars({
+                        fgColor:"#222222"
+                        , bgColor:"#EEEEEE"
+                        , change : function (value) {
+                          var message = new OSC.Message('/nething/bars/gain', 1, 100, value);
+                          osc.send(message);
+                        }
+                        /*, draw : function () {
+                            console.log(this.o);
+                        }*/
+                    });
 
     /*$(".bars2").bars({
                         fgColor:"#222222"
@@ -26,9 +37,12 @@ $(function() {
                         , max : 1000
                         , fgColor:"#222222"
                         , bgColor:"#EEEEEE"
-                        /*, change : function (value) {
-                            console.log("change : ", value);
-                        }*/
+                        , change : function (value) {
+                        //    document.getElementById("statusX").innerHTML = value[0] ;
+                        //    document.getElementById("statusY").innerHTML = value[1] ;
+                            var message = new OSC.Message('/nething/pad/xy', 1000,1000, value[0], value[1]);
+                            osc.send(message);
+                        }
                     })
                 .css({'border':'5px solid #BBB'});
 
